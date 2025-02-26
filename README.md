@@ -10,7 +10,7 @@ Python CLI plugin/app designed to replace streaming prompt chains that assist co
 
 ### Extension or TODO
 - [ ] Add queue to CLI
-- [ ] Add Certainity metrics to enable self-adjustment to unseen data. Although, for the case of assisting conversational agents, this task seems fairly straightforward. For more complainings, refer to my post [here](https://mimiphanblog.wordpress.com/2025/02/23/stop-button/). Thank chu.
+- [x] Add Observations obj - Certainity metrics to enable self-adjustment to unseen data. Although, for the case of assisting conversational agents, this task seems fairly straightforward. For more complainings, refer to my post [here](https://mimiphanblog.wordpress.com/2025/02/23/stop-button/). Thank chu.
 
 ### Demo usage
 - To set up StopButton Agent
@@ -20,33 +20,14 @@ Python CLI plugin/app designed to replace streaming prompt chains that assist co
 
 - Loading Pipeline Example: StopButton
 ```python
-from promptless.model import Pipeline
-
-pipe = Pipeline.load("StopButton")
+from promptless import Ember
+pipe = Ember.load("StopButton")
 ```
 or with CLI
 ```shell
     python promptless load --name StopButton --action predict --inputs hello hru
 ```
-
-- Pipeline inherits from Base class `sentence_transformer.SentenceTransformer` and thus, shares the same operations.
-```python
-# Viewing the models states
-pipe.state_dict
-```
-
-
-
-
-    <bound method Module.state_dict of Pipeline(
-      (0): Transformer({'max_seq_length': 256, 'do_lower_case': False}) with Transformer model: BertModel
-      (1): Pooling({'word_embedding_dimension': 384, 'pooling_mode_cls_token': False, 'pooling_mode_mean_tokens': True, 'pooling_mode_max_tokens': False, 'pooling_mode_mean_sqrt_len_tokens': False, 'pooling_mode_weightedmean_tokens': False, 'pooling_mode_lasttoken': False, 'include_prompt': True})
-      (2): Normalize()
-    )>
-
-
-
-**Viewing target corpus stored as `pos`**
+**Viewing target corpus stored as `pos` attribute**
 
 Example on StopButton's target corpus.
 
